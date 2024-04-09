@@ -9,14 +9,15 @@ public class BankAccount {
 
     public void pop(int money) { // Положить деньги на счет
         balance += money;
+        System.out.println("Деньги успешно приняты, " + "ваш баланс " + balance + " руб.");
     }
 
     public void push(int money) { //  Вывести деньги со счета
-        if (money >= balance){
+        if (money <= balance){
             balance -= money;
-            System.out.println("Деньги успешно отправленны " + " " + money);
+            System.out.println("Деньги успешно отправленны, " + " ваш баланс " + balance + " руб.");
         }else {
-            System.out.println("Недостаточно средств на счету" + " "  + money);
+            System.out.println("Недостаточно средств на счету, " + "ваш баланс - "  + balance + " руб.");
         }
     }
 }
