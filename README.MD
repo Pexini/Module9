@@ -20,22 +20,41 @@
 
 Классы могут быть объявлены с модификаторами доступа public, protected, или без модификатора (пакетный доступ). Также внутренние классы могут быть объявлены с модификатором доступа private, если они являются вложенными в другой класс.
 <br>
-Прмер приватного класса: 
 <br>
-public class FirstClass {<br>
+
+<strong> Прмер приватного класса: </strong> 
+<br>
+<i> public class FirstClass {<br>
     private class PrivateInnerClass { <br>
     } <br>
       public void doSomething() {<br>
         PrivateInnerClass inner = new PrivateInnerClass();<br>
         }<br>
-}
+}</i>
 
 </ol>
 
 <h5> 4. Может ли конструктор быть private? Приведите пример использования такого конструктора. </h5>
 <ol>
  Можно сделать конструктор приватным, чтобы не дать внешнему коду создать новый экземпляр класса.  
+<br>
 
+<strong> Пример: <br> </strong>
+<i> public class Singleton {<br>
+private static Singleton onlyInstance;<br>
 
+private Singleton() {<br>
+// Отдельный экземпляр под систему
+}<br>
+
+public static Singleton getInstance() {<br>
+// Здесь нет возможности создания копий<br>
+if (onlyInstance == null) {<br>
+onlyInstance = new Singleton();<br>
+}<br>
+return onlyInstance;<br>
+}<br>
+}<br>
+</i>
 </ol>
 
