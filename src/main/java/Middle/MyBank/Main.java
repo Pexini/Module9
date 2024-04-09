@@ -16,6 +16,8 @@ public class Main {
                 300, new Accounts(1246, "Филипов А.У", 0));
 
         bank.checkAllAccountsBalance();
+
+        bank.checkCurrentBalance(1245);
     }
 
 

@@ -56,7 +56,7 @@ public class Bank {
         boolean found = false;
         for (Accounts account : accounts){
             if (account.getAccountNumber() == accountNumber){
-                System.out.println("Ваш " + accountNumber + " Баланс равен " + account.getAccountBalance());
+                System.out.println("Баланс для " + accountNumber + " равен " + account.getAccountBalance());
             found = true;
             break;
             }if (!found){
