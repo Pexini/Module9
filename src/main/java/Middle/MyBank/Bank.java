@@ -20,8 +20,8 @@ public class Bank {
 
             accounts1.setAccountBalance(newBalanceAccount1);
             accounts2.setAccountBalance(newBalanceAccount2);
-            System.out.println( "Деньги успешно переведены " + "Ваш баланс составляет " + newBalanceAccount1);
-        }else {
+            System.out.println("Деньги успешно переведены " + "Ваш баланс составляет " + newBalanceAccount1);
+        } else {
             System.out.println(accounts1.accountName + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + accounts1.getAccountBalance());
         }
     }
@@ -44,4 +44,26 @@ public class Bank {
 
         }
     }
+
+    public void checkAllAccountsBalance() {
+        System.out.println("Баланс всех счетов: ");
+        for (Accounts account : accounts) {
+            System.out.println( "Имя владельца " + account.accountName + " " + account.accountNumber + " " + account.accountBalance);
+        }
+    }
+
+    public void checkCurrentBalance(int accountNumber){
+        boolean found = false;
+        for (Accounts account : accounts){
+            if (account.getAccountNumber() == accountNumber){
+                System.out.println("Ваш " + accountNumber + " Баланс равен " + account.getAccountBalance());
+            found = true;
+            break;
+            }if (!found){
+                System.out.println("Такого аккаунта не найденно");
+            }
+        }
+    }
+
 }
+

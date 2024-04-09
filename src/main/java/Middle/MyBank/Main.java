@@ -14,6 +14,9 @@ public class Main {
 
         bank.transferMoney(new Accounts(1245, "Синицин В.Ф", 5000),
                 300, new Accounts(1246, "Филипов А.У", 0));
+
+        bank.checkAllAccountsBalance();
     }
+
 
 }
