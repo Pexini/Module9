@@ -15,11 +15,14 @@ public class Bank {
         if (accounts1.accountBalance >= money) {
             int sendPayment = accounts1.getAccountBalance();
             int acceptPayment = accounts2.getAccountBalance();
-            int newBalance = acceptPayment + money;
-            accounts2.setAccountBalance(newBalance);
-            System.out.println( "Деньги успешно переведены " + "Ваш баланс составляет " + accounts1.getAccountBalance());
+            int newBalanceAccount1 = sendPayment - money;
+            int newBalanceAccount2 = acceptPayment + money;
+
+            accounts1.setAccountBalance(newBalanceAccount1);
+            accounts2.setAccountBalance(newBalanceAccount2);
+            System.out.println( "Деньги успешно переведены " + "Ваш баланс составляет " + newBalanceAccount1);
         }else {
-            System.out.println(accounts1.accountName + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + );
+            System.out.println(accounts1.accountName + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + accounts1.getAccountBalance());
         }
     }
 
