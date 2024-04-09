@@ -39,7 +39,7 @@
  Можно сделать конструктор приватным, чтобы не дать внешнему коду создать новый экземпляр класса.  
 <br>
 
-<strong> Пример: <br> </strong>
+<strong> Пример приватного конструктора: <br> </strong>
 <i> public class Singleton {<br>
 private static Singleton onlyInstance;<br>
 
