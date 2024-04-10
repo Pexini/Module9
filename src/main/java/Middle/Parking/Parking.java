@@ -15,8 +15,8 @@ public class Parking {
 
     public void push(Car car) {
         if (!isFull()) {
-            capacity--;
-            System.out.println("Машина заехала на парковку " + "Свободныъ мест осталось " + capacity);
+            occupiedSpaces++;
+            System.out.println("Машина заехала на парковку " + "Свободныъ мест осталось " + (capacity - occupiedSpaces));
         } else {
             System.out.println(" Свободных мест на парковке нет, въезд запрещен !");
         }
@@ -24,8 +24,8 @@ public class Parking {
 
     public void pop() {
         if (capacity > 0) {
-            capacity++;
-            System.out.println("Машина выехала с парковки " + "Свободных мест " + capacity);
+            occupiedSpaces--;
+            System.out.println("Машина выехала с парковки " + "Свободных мест " + (capacity - occupiedSpaces));
         } else {
             System.out.println("Парковка пустая");
         }
