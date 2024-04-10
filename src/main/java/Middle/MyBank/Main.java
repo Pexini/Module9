@@ -15,6 +15,14 @@ public class Main {
 
         bank.checkAllAccountsBalance();
 
+        bank.checkCurrentBalance(1246);
+        bank.checkCurrentBalance(12);
+
+        bank.addMoney(1246, 7000);
+        bank.checkAllAccountsBalance();
+
+        bank.withdrawMoney( 1246, 500);
+        bank.checkAllAccountsBalance();
 
     }
 

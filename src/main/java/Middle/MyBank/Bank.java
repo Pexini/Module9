@@ -42,22 +42,28 @@ public class Bank {
         }
     }
 
-    public void addMoney(Accounts accounts, int money) {
-        int currentBalance = accounts.getAccountBalance();
-        int newBalance = currentBalance + money;
-        accounts.setAccountBalance(newBalance);
-        System.out.println(accounts.accountName + " Деньги успешно приняты, " + "ваш баланс " + accounts.accountBalance + " руб.");
+    public void addMoney(int toAccountsNumber, int money) {
+        Accounts toAccountNumber = getAccounts(toAccountsNumber);
+        if (toAccountNumber != null) {
+            int currentBalance = toAccountNumber.getAccountBalance();
+            int newBalance = currentBalance + money;
+            toAccountNumber.setAccountBalance(newBalance);
+            System.out.println(toAccountNumber.accountName + " Деньги успешно приняты, " + "ваш баланс " + newBalance + " руб.");
+        }
     }
 
-    public void withdrawMoney(Accounts accounts, int money) {
-        if (accounts.accountBalance <= money) {
-            System.out.println(accounts.accountName + " Недостаточно средств для снятия наличных. " + "Ваш доступный лимит " + accounts.accountBalance);
+    public void withdrawMoney(int fromAccountsNumber, int money) {
+        Accounts fromAccount = getAccounts(fromAccountsNumber);
+        if (fromAccount != null) {
+            if (fromAccount.accountBalance >= money) {
+                int newBalance = fromAccount.accountBalance - money;
+                fromAccount.setAccountBalance(newBalance);
+                System.out.println(fromAccountsNumber + " Деньги успешно сняты, " + "ваш баланс " + newBalance);
+            } else {
+                System.out.println(fromAccountsNumber + " Недостаточно средств для снятия наличных. " + "Ваш доступный лимит " + fromAccount.getAccountBalance());
+            }
         } else {
-            int currentBalance = accounts.getAccountBalance();
-            int newBalance = currentBalance - money;
-            accounts.setAccountBalance(newBalance);
-            System.out.println(accounts.accountName + " Деньги успешно сняты, " + "ваш баланс " + accounts.accountBalance + " руб.");
-
+            System.out.println("Счет не найден");
         }
     }
 
@@ -76,11 +82,13 @@ public class Bank {
                 found = true;
                 break;
             }
-            if (!found) {
-                System.out.println("Такого аккаунта не найденно");
-            }
+        }
+        if (!found) {
+            System.out.println("Аккаунта не найденно");
+
         }
     }
-
 }
+
+
 
