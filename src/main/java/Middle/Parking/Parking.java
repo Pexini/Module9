@@ -4,28 +4,28 @@ public class Parking {
     private int capacity;
     private int occupiedSpaces;
 
-    public Parking(int capacity, int occupiedSpaces) {
+    public Parking(int capacity) {
         this.capacity = capacity;
-        this.occupiedSpaces = occupiedSpaces;
+        this.occupiedSpaces = 0;
     }
 
     public boolean isFull() {
         return occupiedSpaces >= capacity;
     }
 
-    public void push() {
+    public void push(Car car) {
         if (!isFull()) {
-            occupiedSpaces++;
-            System.out.println("Машина заехала на парковку " + "Свободныъ мест осталось " + occupiedSpaces);
+            capacity--;
+            System.out.println("Машина заехала на парковку " + "Свободныъ мест осталось " + capacity);
         } else {
             System.out.println(" Свободных мест на парковке нет, въезд запрещен !");
         }
     }
 
     public void pop() {
-        if (occupiedSpaces > 0) {
-            occupiedSpaces--;
-            System.out.println("Машина выехала с парковки " + "Свободных мест " + occupiedSpaces);
+        if (capacity > 0) {
+            capacity++;
+            System.out.println("Машина выехала с парковки " + "Свободных мест " + capacity);
         } else {
             System.out.println("Парковка пустая");
         }
