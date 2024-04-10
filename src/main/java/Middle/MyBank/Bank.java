@@ -11,18 +11,34 @@ public class Bank {
         accounts.add(account);
     }
 
-    public void transferMoney(Accounts accounts1, int money, Accounts accounts2) {
-        if (accounts1.accountBalance >= money) {
-            int sendPayment = accounts1.getAccountBalance();
-            int acceptPayment = accounts2.getAccountBalance();
-            int newBalanceAccount1 = sendPayment - money;
-            int newBalanceAccount2 = acceptPayment + money;
+    public Accounts getAccounts(int accountNomber) {
+        for (Accounts account : accounts) {
+            if (account.getAccountNumber() == accountNomber) {
+                return account;
+            }
+        }
+        return null;
+    }
 
-            accounts1.setAccountBalance(newBalanceAccount1);
-            accounts2.setAccountBalance(newBalanceAccount2);
-            System.out.println("Деньги успешно переведены " + "Ваш баланс составляет " + newBalanceAccount1);
+
+    public void transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
+        Accounts fromAccount = getAccounts(fromAccountNumber);
+        Accounts toAccount = getAccounts(toAccountNumber);
+
+        if (fromAccount != null && toAccount != null) {
+            if (fromAccount.getAccountNumber() >= money) {
+                int newBalanceFrom = fromAccount.getAccountBalance() - money;
+                int newBalanceTo = toAccount.getAccountBalance() + money;
+
+                fromAccount.setAccountBalance(newBalanceFrom);
+                toAccount.setAccountBalance(newBalanceTo);
+                System.out.println("Деньги успешно переведены " + "Ваш баланс составляет " + newBalanceFrom);
+
+            } else {
+                System.out.println(fromAccount.accountName + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + fromAccount.getAccountBalance());
+            }
         } else {
-            System.out.println(accounts1.accountName + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + accounts1.getAccountBalance());
+            System.out.println("Счет не найден");
         }
     }
 
@@ -48,18 +64,19 @@ public class Bank {
     public void checkAllAccountsBalance() {
         System.out.println("Баланс всех счетов: ");
         for (Accounts account : accounts) {
-            System.out.println( "Имя владельца " + account.accountName + " " + account.accountNumber + " " + account.accountBalance);
+            System.out.println("Имя владельца " + account.accountName + " " + account.accountNumber + " " + account.accountBalance);
         }
     }
 
-    public void checkCurrentBalance(int accountNumber){
+    public void checkCurrentBalance(int accountNumber) {
         boolean found = false;
-        for (Accounts account : accounts){
-            if (account.getAccountNumber() == accountNumber){
+        for (Accounts account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
                 System.out.println("Баланс для " + accountNumber + " равен " + account.getAccountBalance());
-            found = true;
-            break;
-            }if (!found){
+                found = true;
+                break;
+            }
+            if (!found) {
                 System.out.println("Такого аккаунта не найденно");
             }
         }
