@@ -6,7 +6,7 @@ import java.util.List;
 public class MyBank {
     private static final int MAX_BANK_BALANCE = 1000;
     private int currentBalance;
-    private  boolean isEnable;
+    private boolean isEnable;
     private List<Accounts> accounts;
 
     public MyBank() {
@@ -14,15 +14,42 @@ public class MyBank {
         this.isEnable = true;
         this.accounts = new ArrayList<>();
     }
+    public Accounts getAccount (int accountNumber){
+        for (Accounts account : accounts){
+            if (account.getAccountNumber() == accountNumber){
+                return account;
+            }
+        }
+        return null;
+    }
 
-    public void add(Accounts accounts){
-        if (isEnable && currentBalance + accounts.getAccountBalance() <= MAX_BANK_BALANCE){
+
+    public void add(Accounts accounts) {
+        if (isEnable && currentBalance + accounts.getAccountBalance() <= MAX_BANK_BALANCE) {
             this.accounts.add(accounts);
             currentBalance += accounts.getAccountBalance();
             System.out.println("Новый аккаунт добавлен " + " общий баланс в банке " + currentBalance);
-        }else {
+        } else {
             System.out.println("Невозможно добавить новый аккаунт " + accounts.getAccountName() + ", с балансом " + accounts.getAccountBalance() + ". Это превысит допустимый лимит банка. " + "Сейчас в банке " + currentBalance + "руб");
         }
     }
 
+    public void transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
+        Accounts fromAccount = getAccount(fromAccountNumber);
+        Accounts toAccount = getAccount(toAccountNumber);
+        if (fromAccount != null && toAccount != null){
+            if (fromAccount.getAccountBalance() >= money){
+                int newBalanceFrome = fromAccount.getAccountBalance() - money;
+                int newBalanceto = toAccount.getAccountBalance() + money;
+                fromAccount.setAccountBalance(newBalanceFrome);
+                toAccount.setAccountBalance(newBalanceto);
+                System.out.println("Деньги успешно отправленны " + money + " Ваш текущий баланс составляет " + newBalanceFrome);
+            }else {
+                System.out.println(" Превышен лимит по отправке " + money + " Ваш текущий баланс составляет " + currentBalance);
+            }
+        }else {
+            System.out.println("Счет не найден");
+        }
+
+    }
 }
