@@ -27,12 +27,30 @@ public class Elevator {
     }
 
     public void push() {
-        if (!isEnable){
+        if (isEnable){
             System.out.println("Лифт начал движение.");
+            System.out.println();
         }else {
             System.out.println(" Превышен лимит, лифт не может начать движение");
         }
     }
-
+    public void pop(){
+        System.out.println("Лифт приехал, происходит выгрузка  выгрузка...");
+        cargos.clear();
+        currentWeight = 0;
+        isEnable = true;
+    }
+    public void chekWeight() {
+        if (!cargos.isEmpty()) {
+            StringBuilder cargoTypes = new StringBuilder();
+            for (Cargo cargo : cargos) {
+                cargoTypes.append(cargo.getType()).append(", ");
+            }
+            cargoTypes.delete(cargoTypes.length() - 2, cargoTypes.length() - 1);
+            System.out.println("В лифте находится : " + cargoTypes.toString() + ", с обшим весом " + currentWeight + " кг.");
+        } else {
+            System.out.println("В лифте нет груза");
+        }
+    }
 }
 
