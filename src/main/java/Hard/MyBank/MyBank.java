@@ -14,9 +14,10 @@ public class MyBank {
         this.isEnable = true;
         this.accounts = new ArrayList<>();
     }
-    public Accounts getAccount (int accountNumber){
-        for (Accounts account : accounts){
-            if (account.getAccountNumber() == accountNumber){
+
+    public Accounts getAccount(int accountNumber) {
+        for (Accounts account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
                 return account;
             }
         }
@@ -37,19 +38,42 @@ public class MyBank {
     public void transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
         Accounts fromAccount = getAccount(fromAccountNumber);
         Accounts toAccount = getAccount(toAccountNumber);
-        if (fromAccount != null && toAccount != null){
-            if (fromAccount.getAccountBalance() >= money){
+        if (fromAccount != null && toAccount != null) {
+            if (fromAccount.getAccountBalance() >= money) {
                 int newBalanceFrome = fromAccount.getAccountBalance() - money;
                 int newBalanceto = toAccount.getAccountBalance() + money;
                 fromAccount.setAccountBalance(newBalanceFrome);
                 toAccount.setAccountBalance(newBalanceto);
-                System.out.println("Уважаемый " + fromAccount.getAccountName() +  ", деньги в сумме " + money + " успешно отправленны. Ваш текущий баланс составляет " + newBalanceFrome);
-            }else {
-                System.out.println("Уважаемый " + fromAccount.getAccountName() +  " Перевод " + money +  " запрещен! Превышен лимит, сумма вашего баланса составляет " + fromAccount.getAccountBalance());
+                System.out.println("Уважаемый " + fromAccount.getAccountName() + ", деньги в сумме " + money + " успешно отправленны. Ваш текущий баланс составляет " + newBalanceFrome);
+            } else {
+                System.out.println("Уважаемый " + fromAccount.getAccountName() + " Перевод " + money + " запрещен! Превышен лимит, сумма вашего баланса составляет " + fromAccount.getAccountBalance());
+            }
+        } else {
+            System.out.println("Счет не найден");
+        }
+    }
+
+    public void addMoney(int toAccountsNumber, int money) {
+        Accounts toAccountNumber = getAccount(toAccountsNumber);
+        if (toAccountNumber != null) {
+            if (isEnable && (this.currentBalance + money) <= MAX_BANK_BALANCE) {
+                int currentBalance = toAccountNumber.getAccountBalance();
+                int newBalance = currentBalance + money;
+                toAccountNumber.setAccountBalance(newBalance);
+                this.currentBalance += money;
+                System.out.println(toAccountNumber.getAccountName() + " Ваши деньги в сумме " + money + " приняты, текущий баланс  равен " + newBalance);
+            } else {
+                System.out.println(toAccountNumber.getAccountName() + " Невозможно положитьт данную сумму, " + money + " возможная сумма для внесения " + (MAX_BANK_BALANCE - currentBalance));
             }
         }else {
             System.out.println("Счет не найден");
         }
-
+        }
+        public void checkCurrentBankBalance(){
+            System.out.println("Баланс всех счетов в банке:");
+            for (Accounts account : accounts){
+                System.out.println("Имя владельца " + account.getAccountName() + " "+ account.getAccountNumber() +  " " + account.getAccountBalance());
+                System.out.println(" Итого в банке = " + currentBalance + " руб");
+            }
+        }
     }
-}
