@@ -14,6 +14,7 @@ public class Main {
         Car car8 = new Car("Mercedes");
         Car car9 = new Car("Honda");
         Car car10 = new Car("Toyota");
+        Car car11 = new Car("Toyota");
 
 
         parking.push(car1);
@@ -28,6 +29,10 @@ public class Main {
         parking.push(car10);
 
         parking.pop();
+        parking.pop();
 
+        parking.push(car7);
+        parking.push(car9);
+        parking.push(car11);
     }
 }
