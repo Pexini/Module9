@@ -16,7 +16,10 @@ public class Main {
          bank.add(accounts);
 
 
-         bank.transferMoney(1257, 400, 1258);
+         bank.transferMoney(1257, 200, 1258);
+         bank.transferMoney(1257, 200, 1259);
+         bank.transferMoney(1258, 400, 1259);
+
          bank.transferMoney(12, 400, 1258);
 
 
