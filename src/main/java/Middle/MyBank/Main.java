@@ -10,7 +10,6 @@ public class Main {
 
         bank.transferMoney(1245, 1000, 1246);
         bank.transferMoney(1247, 300, 1246);
-
         bank.transferMoney(1246, 5000, 1245);
 
         bank.checkAllAccountsBalance();
