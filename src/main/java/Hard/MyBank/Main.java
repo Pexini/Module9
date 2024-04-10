@@ -14,7 +14,11 @@ public class Main {
          bank.add(accounts2);
          bank.add(accounts1);
          bank.add(accounts);
-         bank.add(accounts5);
+
+
+         bank.transferMoney(1257, 400, 1258);
+         bank.transferMoney(12, 400, 1258);
+
 
 
     }

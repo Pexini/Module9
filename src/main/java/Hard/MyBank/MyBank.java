@@ -43,9 +43,9 @@ public class MyBank {
                 int newBalanceto = toAccount.getAccountBalance() + money;
                 fromAccount.setAccountBalance(newBalanceFrome);
                 toAccount.setAccountBalance(newBalanceto);
-                System.out.println("Деньги успешно отправленны " + money + " Ваш текущий баланс составляет " + newBalanceFrome);
+                System.out.println("Уважаемый " + fromAccount.getAccountName() +  ", деньги в сумме " + money + " успешно отправленны. Ваш текущий баланс составляет " + newBalanceFrome);
             }else {
-                System.out.println(" Превышен лимит по отправке " + money + " Ваш текущий баланс составляет " + currentBalance);
+                System.out.println("Уважаемый " + fromAccount.getAccountName() +  " Перевод " + money +  " запрещен! Превышен лимит, сумма вашего баланса составляет " + fromAccount.getAccountBalance());
             }
         }else {
             System.out.println("Счет не найден");
