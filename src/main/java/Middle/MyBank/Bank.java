@@ -23,14 +23,14 @@ public class Bank {
     public boolean isPositiveAmount(int amount) {
         if (amount <= 0) {
             System.out.println("Ошибка: сумма должна быть положительной.");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
 
     public void transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
-        if (isPositiveAmount(money)) {
+        if (!isPositiveAmount(money)) {
             return;
         }
         Accounts fromAccount = getAccounts(fromAccountNumber);
@@ -54,7 +54,7 @@ public class Bank {
     }
 
     public void addMoney(int toAccountsNumber, int money) {
-        if (isPositiveAmount(money)) {
+        if (!isPositiveAmount(money)) {
             return;
         }
 
@@ -68,7 +68,7 @@ public class Bank {
     }
 
     public void withdrawMoney(int fromAccountsNumber, int money) {
-        if (isPositiveAmount(money)) {
+        if (!isPositiveAmount(money)) {
             return;
         }
         Accounts fromAccount = getAccounts(fromAccountsNumber);
