@@ -37,7 +37,7 @@ public class Bank {
         Accounts toAccount = getAccounts(toAccountNumber);
 
         if (fromAccount != null && toAccount != null) {
-            if (fromAccount.getAccountNumber() >= money) {
+            if (fromAccount.getAccountBalance() >= money) {
                 int newBalanceFrom = fromAccount.getAccountBalance() - money;
                 int newBalanceTo = toAccount.getAccountBalance() + money;
 
