@@ -23,7 +23,7 @@ public class Main {
         bank.transferMoney(12, 400, 1258);
 
         bank.addMoney(1257, 30);
-        bank.addMoney(1259, 30);
+        bank.addMoney(1259, -30);
         bank.addMoney(1259, 20);
 
         bank.checkCurrentBankBalance();

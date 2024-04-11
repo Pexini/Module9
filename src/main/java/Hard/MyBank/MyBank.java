@@ -15,6 +15,14 @@ public class MyBank {
         this.accounts = new ArrayList<>();
     }
 
+    public boolean isPositiveAmount(int amount) {
+        if (amount <= 0) {
+            System.out.println("Ошибка: неверная сумма!");
+        return false;
+        }
+        return true;
+    }
+
     public Accounts getAccount(int accountNumber) {
         for (Accounts account : accounts) {
             if (account.getAccountNumber() == accountNumber) {
@@ -36,6 +44,9 @@ public class MyBank {
     }
 
     public void transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
+        if (!isPositiveAmount(money)){
+            return;
+        }
         Accounts fromAccount = getAccount(fromAccountNumber);
         Accounts toAccount = getAccount(toAccountNumber);
         if (fromAccount != null && toAccount != null) {
@@ -54,6 +65,9 @@ public class MyBank {
     }
 
     public void addMoney(int toAccountsNumber, int money) {
+        if (!isPositiveAmount(money)){
+            return;
+        }
         Accounts toAccountNumber = getAccount(toAccountsNumber);
         if (toAccountNumber != null) {
             if (isEnable && (this.currentBalance + money) <= MAX_BANK_BALANCE) {
@@ -65,15 +79,16 @@ public class MyBank {
             } else {
                 System.out.println(toAccountNumber.getAccountName() + " Невозможно положитьт данную сумму, " + money + " возможная сумма для внесения " + (MAX_BANK_BALANCE - currentBalance));
             }
-        }else {
+        } else {
             System.out.println("Счет не найден");
         }
-        }
-        public void checkCurrentBankBalance(){
-            System.out.println("Баланс всех счетов в банке:");
-            for (Accounts account : accounts){
-                System.out.println("Имя владельца " + account.getAccountName() + " "+ account.getAccountNumber() +  " " + account.getAccountBalance());
-                System.out.println(" Итого в банке = " + currentBalance + " руб");
-            }
+    }
+
+    public void checkCurrentBankBalance() {
+        System.out.println("Баланс всех счетов в банке:");
+        for (Accounts account : accounts) {
+            System.out.println("Имя владельца " + account.getAccountName() + " " + account.getAccountNumber() + " " + account.getAccountBalance());
+            System.out.println(" Итого в банке = " + currentBalance + " руб");
         }
     }
+}
