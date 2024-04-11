@@ -35,7 +35,7 @@ public class Bank {
                 System.out.println("Деньги успешно переведены " + "Ваш баланс составляет " + newBalanceFrom);
 
             } else {
-                System.out.println(fromAccount.accountName + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + fromAccount.getAccountBalance());
+                System.out.println(fromAccount.getAccountName() + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + fromAccount.getAccountBalance());
             }
         } else {
             System.out.println("Счет не найден");
@@ -48,15 +48,15 @@ public class Bank {
             int currentBalance = toAccountNumber.getAccountBalance();
             int newBalance = currentBalance + money;
             toAccountNumber.setAccountBalance(newBalance);
-            System.out.println(toAccountNumber.accountName + " Деньги успешно приняты, " + "ваш баланс " + newBalance + " руб.");
+            System.out.println(toAccountNumber.getAccountName() + " Деньги успешно приняты, " + "ваш баланс " + newBalance + " руб.");
         }
     }
 
     public void withdrawMoney(int fromAccountsNumber, int money) {
         Accounts fromAccount = getAccounts(fromAccountsNumber);
         if (fromAccount != null) {
-            if (fromAccount.accountBalance >= money) {
-                int newBalance = fromAccount.accountBalance - money;
+            if (fromAccount.getAccountBalance() >= money) {
+                int newBalance = fromAccount.getAccountBalance() - money;
                 fromAccount.setAccountBalance(newBalance);
                 System.out.println(fromAccountsNumber + " Деньги успешно сняты, " + "ваш баланс " + newBalance);
             } else {
@@ -70,7 +70,7 @@ public class Bank {
     public void checkAllAccountsBalance() {
         System.out.println("Баланс всех счетов: ");
         for (Accounts account : accounts) {
-            System.out.println("Имя владельца " + account.accountName + " " + account.accountNumber + " " + account.accountBalance);
+            System.out.println("Имя владельца " + account.getAccountName() + " " + account.getAccountNumber() + " " + account.getAccountBalance());
         }
     }
 

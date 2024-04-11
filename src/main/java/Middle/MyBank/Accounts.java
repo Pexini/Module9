@@ -1,9 +1,9 @@
 package Middle.MyBank;
 
 public class Accounts {
-    protected int accountNumber;
-    protected String accountName;
-    protected int accountBalance;
+    private int accountNumber;
+    private String accountName;
+    private int accountBalance;
 
     public Accounts(int accountNumber, String accountName, int accountBalance) {
         this.accountNumber = accountNumber;
