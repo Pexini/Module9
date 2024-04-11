@@ -8,7 +8,7 @@ public class Main {
         bank.addAccount(new Accounts(1247, "Сорокин П.М", 12_000));
 
 
-        bank.transferMoney(1245, 1000, 1246);
+        bank.transferMoney(1245, -1000, 1246);
         bank.transferMoney(1247, 300, 1246);
         bank.transferMoney(1246, 5000, 1245);
 
@@ -18,9 +18,10 @@ public class Main {
         bank.checkCurrentBalance(12);
 
         bank.addMoney(1246, 7000);
+        bank.addMoney(1246, -1_000_00);
         bank.checkAllAccountsBalance();
 
-        bank.withdrawMoney( 1246, 500);
+        bank.withdrawMoney( 1246, -500);
         bank.checkAllAccountsBalance();
 
     }

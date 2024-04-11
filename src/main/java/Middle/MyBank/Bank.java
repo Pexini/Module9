@@ -20,8 +20,19 @@ public class Bank {
         return null;
     }
 
+    public boolean isPositiveAmount(int amount) {
+        if (amount <= 0) {
+            System.out.println("Ошибка: сумма должна быть положительной.");
+            return true;
+        }
+        return false;
+    }
+
 
     public void transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
+        if (isPositiveAmount(money)) {
+            return;
+        }
         Accounts fromAccount = getAccounts(fromAccountNumber);
         Accounts toAccount = getAccounts(toAccountNumber);
 
@@ -43,6 +54,10 @@ public class Bank {
     }
 
     public void addMoney(int toAccountsNumber, int money) {
+        if (isPositiveAmount(money)) {
+            return;
+        }
+
         Accounts toAccountNumber = getAccounts(toAccountsNumber);
         if (toAccountNumber != null) {
             int currentBalance = toAccountNumber.getAccountBalance();
@@ -53,6 +68,9 @@ public class Bank {
     }
 
     public void withdrawMoney(int fromAccountsNumber, int money) {
+        if (isPositiveAmount(money)) {
+            return;
+        }
         Accounts fromAccount = getAccounts(fromAccountsNumber);
         if (fromAccount != null) {
             if (fromAccount.getAccountBalance() >= money) {
