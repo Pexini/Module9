@@ -20,7 +20,7 @@ public class Bank {
         return null;
     }
 
-    public boolean isPositiveAmount(int amount) {
+    private boolean isPositiveAmount(int amount) {
         if (amount <= 0) {
             System.out.println("Ошибка: сумма должна быть положительной.");
             return false;
