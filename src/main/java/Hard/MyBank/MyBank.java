@@ -15,7 +15,7 @@ public class MyBank {
         this.accounts = new ArrayList<>();
     }
 
-    public boolean isPositiveAmount(int amount) {
+    private boolean isPositiveAmount(int amount) {
         if (amount <= 0) {
             System.out.println("Ошибка: неверная сумма!");
         return false;
