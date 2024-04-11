@@ -17,23 +17,26 @@ public class Elevator {
     }
 
     public void add(Cargo cargo) {
-        if (isEnable && currentWeight + cargo.getWeight() <= MAX_WEIGHT_CAPACITY) {
+        if (isEnable) {
             cargos.add(cargo);
             currentWeight += cargo.getWeight();
             System.out.println("Груз " + cargo.getType() + ", добавлен в лифт. Тукузий вес " + currentWeight);
-        } else {
-            System.out.println("Груз " + cargo.getType() + " превысел лимит. Текущий вес " + currentWeight);
         }
     }
 
-    public void push() {
-        if (isEnable){
+    public void push () {
+        int totalWeight = 0;
+        for (Cargo cargo : cargos){
+            totalWeight += cargo.getWeight();
+        }
+        if (isEnable &&  totalWeight <= MAX_WEIGHT_CAPACITY){
             System.out.println("Лифт начал движение.");
             System.out.println();
         }else {
             System.out.println(" Превышен лимит, лифт не может начать движение");
         }
     }
+
     public void pop(){
         System.out.println("Лифт приехал, происходит выгрузка  выгрузка...");
         cargos.clear();

@@ -15,17 +15,24 @@ public class Main {
         elevator.add(cargo2);
         elevator.add(cargo3);
         elevator.add(cargo4);
-
-
+        elevator.add(cargo5);
+        elevator.add(cargo5);
+        elevator.add(cargo5);
+        elevator.add(cargo6);
+        elevator.add(cargo6);
+        elevator.add(cargo6);
+        elevator.chekWeight();
         elevator.push();
+
         elevator.pop();
 
         elevator.add(cargo3);
         elevator.add(cargo4);
         elevator.add(cargo5);
         elevator.add(cargo6);
-
-
+        elevator.chekWeight();
+        elevator.push();
+        elevator.pop();
 
         elevator.chekWeight();
     }
