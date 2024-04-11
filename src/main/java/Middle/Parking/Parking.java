@@ -9,7 +9,7 @@ public class Parking {
         this.occupiedSpaces = 0;
     }
 
-    public boolean isFull() {
+    private boolean isFull() {
         return occupiedSpaces >= capacity;
     }
 
