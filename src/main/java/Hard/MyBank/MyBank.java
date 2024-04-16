@@ -18,7 +18,7 @@ public class MyBank {
     private boolean isPositiveAmount(int amount) {
         if (amount <= 0) {
             System.out.println("Ошибка: неверная сумма! Сумма должна быть положительной!");
-        return false;
+            return false;
         }
         return true;
     }
@@ -44,7 +44,7 @@ public class MyBank {
     }
 
     public boolean transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
-        if (!isPositiveAmount(money)){
+        if (!isPositiveAmount(money)) {
             return false;
         }
         Accounts fromAccount = getAccount(fromAccountNumber);
@@ -53,7 +53,7 @@ public class MyBank {
             if (fromAccount.withdrawTransfer(money)) {
                 toAccount.depositTransfer(money);
                 System.out.println("Уважаемый " + fromAccount.getAccountName() + ", деньги в сумме " + money + " успешно отправленны. Ваш текущий баланс составляет " + fromAccount.getAccountBalance());
-            return true;
+                return true;
             } else {
                 System.out.println("Уважаемый " + fromAccount.getAccountName() + " Перевод " + money + " запрещен! Превышен лимит, сумма вашего баланса составляет " + fromAccount.getAccountBalance());
             }
@@ -63,24 +63,28 @@ public class MyBank {
         return false;
     }
 
-    public void addMoney(int toAccountsNumber, int money) {
-        if (!isPositiveAmount(money)){
-            return;
+    public boolean addMoney(int toAccountsNumber, int money) {
+        if (!isPositiveAmount(money)) {
+            return false;
         }
         Accounts toAccountNumber = getAccount(toAccountsNumber);
-        if (toAccountNumber != null) {
-            if (isEnable && (this.currentBalance + money) <= MAX_BANK_BALANCE) {
-                int currentBalance = toAccountNumber.getAccountBalance();
-                int newBalance = currentBalance + money;
-                toAccountNumber.setAccountBalance(newBalance);
-                this.currentBalance += money;
-                System.out.println(toAccountNumber.getAccountName() + " Ваши деньги в сумме " + money + " приняты, текущий баланс  равен " + newBalance);
-            } else {
-                System.out.println(toAccountNumber.getAccountName() + " Невозможно положитьт данную сумму, " + money + " возможная сумма для внесения " + (MAX_BANK_BALANCE - currentBalance));
-            }
-        } else {
+        if (toAccountNumber == null) {
             System.out.println("Счет не найден");
+            return false;
         }
+        if (currentBalance + money > MAX_BANK_BALANCE) {
+            System.out.println("Операция невозможна, превышен лимит банка.");
+            return false;
+        }
+        if (toAccountNumber.depositTransfer(money)) {
+            int newBalance = toAccountNumber.getAccountBalance();
+            System.out.println(toAccountNumber.getAccountName() + " Ваши деньги в сумме " + money + " приняты, текущий баланс  равен " + newBalance);
+            return true;
+        } else {
+            System.out.println(toAccountNumber.getAccountName() + " Невозможно положитьт данную сумму, " + money + " возможная сумма для внесения " + (MAX_BANK_BALANCE - currentBalance));
+            return false;
+        }
+
     }
 
     public void checkCurrentBankBalance() {
@@ -91,3 +95,4 @@ public class MyBank {
         }
     }
 }
+

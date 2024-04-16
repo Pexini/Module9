@@ -35,22 +35,24 @@ public class Accounts {
         this.accountBalance = accountBalance;
     }
 
-    public void depositTransfer(int amount) {
+    public boolean depositTransfer(int amount) {
         if (amount > 0) {
             this.accountBalance += amount;
-            System.out.println("Счет " + this.accountName + " пополнен на " + amount + ". Новый баланс: " + this.accountBalance);
+    //        System.out.println("Счет " + this.accountName + " пополнен на " + amount + ". Новый баланс: " + this.accountBalance);
+            return true;
         } else {
             System.out.println("Ошибка! недостаточно средств.");
         }
+        return false;
     }
 
     public boolean withdrawTransfer(int amount) {
         if (amount > 0 && this.accountBalance >= amount) {
             this.accountBalance -= amount;
-           // System.out.println("Со счета " + this.accountName + " списано " + amount + " . Ваш баланс составляет - " + this.accountBalance);
+//            System.out.println("Со счета " + this.accountName + " списано " + amount + " . Ваш баланс составляет - " + this.accountBalance);
             return true;
         } else {
-//            System.out.println("Ошибка, недостаточно средств на счете. Ваш балас - " + this.accountBalance);
+            System.out.println("Ошибка, недостаточно средств на счете. Ваш балас - " + this.accountBalance);
         }
         return false;
     }

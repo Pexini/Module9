@@ -31,9 +31,12 @@ public class Main {
 
         bank.addMoney(1257, 30);
         bank.addMoney(1259, -30);
-        bank.addMoney(1259, 20);
         System.out.println();
-
+        bank.addMoney(1259, 2000);
+        System.out.println();
+        System.out.println();
+        bank.addMoney(129, 2000);
+        System.out.println();
         bank.checkCurrentBankBalance();
     }
 }
