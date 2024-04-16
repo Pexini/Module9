@@ -113,7 +113,7 @@ public class MyBank {
             System.out.println(toAccountNumber.getAccountName() + " Ваши деньги в сумме " + money + " сняты, текущий баланс  равен " + newBalance);
             return true;
         } else {
-            System.out.println(toAccountNumber.getAccountName() + " Невозможно снять данную сумму, " + money + " возможная сумма для снятия " + (currentBalance));
+            System.out.println(toAccountNumber.getAccountName() + " Невозможно снять данную сумму, " + money + " возможная сумма для снятия " + (toAccountNumber.getAccountBalance()));
             return false;
         }
 
