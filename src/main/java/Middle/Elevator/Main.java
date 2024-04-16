@@ -29,7 +29,7 @@ public class Main {
 
         elevator.push();
 
-        elevator.pop();
+
 
         elevator.add(cargo3);
         elevator.add(cargo4);
