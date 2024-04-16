@@ -40,27 +40,29 @@ public class Bank {
         if (toAccountNumber.depositTransfer(money)) {
             int newBalance = toAccountNumber.getAccountBalance();
             System.out.println(toAccountNumber.getAccountName() + " Деньги успешно приняты, " + "ваш баланс " + newBalance + " руб.");
-       return true;
+            return true;
         }
         return false;
     }
 
-    public void withdrawMoney(int fromAccountsNumber, int money) {
+    public boolean withdrawMoney(int fromAccountsNumber, int money) {
         if (!isPositiveAmount(money)) {
-            return;
+            return false;
         }
         Accounts fromAccount = getAccounts(fromAccountsNumber);
-        if (fromAccount != null) {
-            if (fromAccount.getAccountBalance() >= money) {
-                int newBalance = fromAccount.getAccountBalance() - money;
-                fromAccount.setAccountBalance(newBalance);
-                System.out.println(fromAccountsNumber + " Деньги успешно сняты, " + "ваш баланс " + newBalance);
-            } else {
-                System.out.println(fromAccountsNumber + " Недостаточно средств для снятия наличных. " + "Ваш доступный лимит " + fromAccount.getAccountBalance());
-            }
-        } else {
+        if (fromAccount == null) {
             System.out.println("Счет не найден");
+            return false;
         }
+        if (fromAccount.withdrawTransfer(money)) {
+            int newBalance = fromAccount.getAccountBalance();
+            System.out.println(fromAccountsNumber + " Деньги успешно сняты, " + "ваш баланс " + newBalance);
+            return true;
+        } else {
+            System.out.println(fromAccountsNumber + " Недостаточно средств для снятия наличных. " + "Ваш доступный лимит " + fromAccount.getAccountBalance());
+    return false;
+        }
+
     }
 
     public void checkAllAccountsBalance() {

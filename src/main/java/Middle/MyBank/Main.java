@@ -26,7 +26,7 @@ public class Main {
         bank.addMoney(1246, -1_000_00);
         bank.checkAllAccountsBalance();
 
-        bank.withdrawMoney(1246, -500);
+        bank.withdrawMoney(1246, 7001000);
         bank.checkAllAccountsBalance();
 
     }
