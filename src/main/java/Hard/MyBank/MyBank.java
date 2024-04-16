@@ -88,11 +88,38 @@ public class MyBank {
     }
 
     public void checkCurrentBankBalance() {
+        int totalBalance = 0;
         System.out.println("Баланс всех счетов в банке:");
         for (Accounts account : accounts) {
             System.out.println("Имя владельца " + account.getAccountName() + " " + account.getAccountNumber() + " " + account.getAccountBalance());
-            System.out.println(" Итого в банке = " + currentBalance + " руб");
+        totalBalance += account.getAccountBalance();
         }
+            System.out.println(" Итого в банке = " + totalBalance + " руб");
+
     }
+
+    public boolean withdrawMoney(int fromAccountsNumber, int money) {
+        if (!isPositiveAmount(money)) {
+            return false;
+        }
+        Accounts toAccountNumber = getAccount(fromAccountsNumber);
+        if (toAccountNumber == null) {
+            System.out.println("Счет не найден");
+            return false;
+        }
+
+        if (toAccountNumber.withdrawTransfer(money)) {
+            int newBalance = toAccountNumber.getAccountBalance();
+            System.out.println(toAccountNumber.getAccountName() + " Ваши деньги в сумме " + money + " сняты, текущий баланс  равен " + newBalance);
+            return true;
+        } else {
+            System.out.println(toAccountNumber.getAccountName() + " Невозможно снять данную сумму, " + money + " возможная сумма для снятия " + (currentBalance));
+            return false;
+        }
+
+    }
+
+
+
 }
 

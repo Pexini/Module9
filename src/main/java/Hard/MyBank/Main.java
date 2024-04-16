@@ -37,6 +37,10 @@ public class Main {
         System.out.println();
         bank.addMoney(129, 2000);
         System.out.println();
+        bank.withdrawMoney(1258, 400);
+
+
+
         bank.checkCurrentBankBalance();
     }
 }
