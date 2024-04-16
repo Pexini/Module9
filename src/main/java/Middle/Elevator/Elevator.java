@@ -38,6 +38,11 @@ public class Elevator {
     }
 
     public void pop() {
+                while (currentWeight > MAX_WEIGHT_CAPACITY){
+            popLastCargo();
+        }
+        System.out.println("Лифт начал движение...");
+        System.out.println();
         System.out.println("Лифт приехал, происходит выгрузка  выгрузка...");
         cargos.clear();
         currentWeight = 0;
@@ -54,6 +59,16 @@ public class Elevator {
         }
 
     }
+    public void popLastCargo() {
+        if (!cargos.isEmpty()) {
+            Cargo cargoToRemove = cargos.remove(cargos.size() - 1);
+            currentWeight -= cargoToRemove.getWeight();
+            System.out.println("Груз " + cargoToRemove.getType() + " Весом " + cargoToRemove.getWeight() + " выгружен из лифта.");
+        } else {
+            System.out.println("Лифт пуст, нет груза для выгрузки.");
+        }
+    }
+
 
 
     public void chekWeight() {

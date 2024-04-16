@@ -16,4 +16,5 @@ public class Cargo {
     public int getWeight() {
         return weight;
     }
+
 }
