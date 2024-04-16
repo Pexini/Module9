@@ -17,14 +17,22 @@ public class Main {
 
 
         bank.transferMoney(1257, 200, 1258);
-        bank.transferMoney(1257, 200, 1259);
-        bank.transferMoney(1258, 400, 1259);
+        System.out.println();
+
+        bank.transferMoney(1257, -200, 1259);
+        System.out.println();
+
+
+        bank.transferMoney(1258, 1400, 1259);
+        System.out.println();
 
         bank.transferMoney(12, 400, 1258);
+        System.out.println();
 
         bank.addMoney(1257, 30);
         bank.addMoney(1259, -30);
         bank.addMoney(1259, 20);
+        System.out.println();
 
         bank.checkCurrentBankBalance();
     }
