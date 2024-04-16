@@ -11,9 +11,9 @@ public class Bank {
         accounts.add(account);
     }
 
-    public Accounts getAccounts(int accountNomber) {
+    public Accounts getAccounts(int accountNumber) {
         for (Accounts account : accounts) {
-            if (account.getAccountNumber() == accountNomber) {
+            if (account.getAccountNumber() == accountNumber) {
                 return account;
             }
         }
@@ -28,36 +28,10 @@ public class Bank {
         return true;
     }
 
-
-    public void transferMoney(int fromAccountNumber, int money, int toAccountNumber) {
-        if (!isPositiveAmount(money)) {
-            return;
-        }
-        Accounts fromAccount = getAccounts(fromAccountNumber);
-        Accounts toAccount = getAccounts(toAccountNumber);
-
-        if (fromAccount != null && toAccount != null) {
-            if (fromAccount.getAccountBalance() >= money) {
-                int newBalanceFrom = fromAccount.getAccountBalance() - money;
-                int newBalanceTo = toAccount.getAccountBalance() + money;
-
-                fromAccount.setAccountBalance(newBalanceFrom);
-                toAccount.setAccountBalance(newBalanceTo);
-                System.out.println("Деньги успешно переведены " + "Ваш баланс составляет " + newBalanceFrom);
-
-            } else {
-                System.out.println(fromAccount.getAccountName() + " Недостаточно средств для снятия перевода. Ваш доступный лимит " + fromAccount.getAccountBalance());
-            }
-        } else {
-            System.out.println("Счет не найден");
-        }
-    }
-
     public void addMoney(int toAccountsNumber, int money) {
         if (!isPositiveAmount(money)) {
             return;
         }
-
         Accounts toAccountNumber = getAccounts(toAccountsNumber);
         if (toAccountNumber != null) {
             int currentBalance = toAccountNumber.getAccountBalance();
@@ -106,7 +80,31 @@ public class Bank {
 
         }
     }
+
+    public boolean TransferMoney(int fromAccountNumber, int money, int toAccountNumber) {
+        Accounts fromAccount = getAccounts(fromAccountNumber);
+        Accounts toAcount = getAccounts(toAccountNumber);
+        if (!isPositiveAmount(money)) {
+            return false;
+        }
+        if (fromAccount != null && toAcount != null) {
+            if (fromAccount.withdrawTransfer(money)) {
+                toAcount.depositTransfer(money);
+                System.out.println("Перевод выполнен успешно.");
+                return true;
+            } else {
+                System.out.println("Недостаточно средств для перевода.");
+            }
+        } else {
+            System.out.println("Счет не найден.");
+        }
+        return false;
+    }
+
 }
+
+
+
 
 
 

@@ -34,4 +34,26 @@ public class Accounts {
     public void setAccountBalance(int accountBalance) {
         this.accountBalance = accountBalance;
     }
+
+    public void depositTransfer(int amount) {
+        if (amount > 0) {
+            this.accountBalance += amount;
+            System.out.println("Счет " + this.accountName + " пополнен на " + amount + ". Новый баланс: " + this.accountBalance);
+        } else {
+            System.out.println("Ошибка! недостаточно средств.");
+        }
+    }
+
+    public boolean withdrawTransfer(int amount) {
+        if (amount > 0 && this.accountBalance >= amount) {
+            this.accountBalance -= amount;
+            System.out.println("Со счета " + this.accountName +  " списано " + amount + " . Ваш баланс составляет - " + this.accountBalance);
+            return true;
+        } else {
+            System.out.println("Ошибка, недостаточно средств на счете. Ваш балас - ");
+            return false;
+        }
+    }
+
+
 }
