@@ -24,6 +24,11 @@ public class Main {
         elevator.chekWeight();
         elevator.push();
 
+        elevator.popOneCargo(cargo6);
+        elevator.popOneCargo(cargo3);
+
+        elevator.push();
+
         elevator.pop();
 
         elevator.add(cargo3);

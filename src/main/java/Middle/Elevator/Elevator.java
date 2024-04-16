@@ -24,25 +24,38 @@ public class Elevator {
         }
     }
 
-    public void push () {
+    public void push() {
         int totalWeight = 0;
-        for (Cargo cargo : cargos){
+        for (Cargo cargo : cargos) {
             totalWeight += cargo.getWeight();
         }
-        if (isEnable &&  totalWeight <= MAX_WEIGHT_CAPACITY){
+        if (isEnable && totalWeight <= MAX_WEIGHT_CAPACITY) {
             System.out.println("Лифт начал движение.");
             System.out.println();
-        }else {
+        } else {
             System.out.println(" Превышен лимит, лифт не может начать движение");
         }
     }
 
-    public void pop(){
+    public void pop() {
         System.out.println("Лифт приехал, происходит выгрузка  выгрузка...");
         cargos.clear();
         currentWeight = 0;
         isEnable = true;
     }
+
+    public void popOneCargo(Cargo cargo) {
+        if (cargos.contains(cargo)) {
+            cargos.remove(cargo);
+            currentWeight -= cargo.getWeight();
+            System.out.println("Груз " + cargo.getType() + " Весом " + cargo.getWeight() + " Вышел из лифта.");
+        } else {
+            System.out.println("Лифт пуст, нет груза для выгрузки");
+        }
+
+    }
+
+
     public void chekWeight() {
         if (!cargos.isEmpty()) {
             StringBuilder cargoTypes = new StringBuilder();
