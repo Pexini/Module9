@@ -35,13 +35,15 @@ public class Accounts {
         this.accountBalance = accountBalance;
     }
 
-    public void depositTransfer(int amount) {
+    public boolean depositTransfer(int amount) {
         if (amount > 0) {
             this.accountBalance += amount;
             System.out.println("Счет " + this.accountName + " пополнен на " + amount + ". Новый баланс: " + this.accountBalance);
+        return true;
         } else {
             System.out.println("Ошибка! недостаточно средств.");
         }
+        return false;
     }
 
     public boolean withdrawTransfer(int amount) {

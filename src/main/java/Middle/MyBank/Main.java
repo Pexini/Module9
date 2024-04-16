@@ -20,7 +20,9 @@ public class Main {
         bank.checkCurrentBalance(1246);
         bank.checkCurrentBalance(12);
 
-        bank.addMoney(1246, 7000);
+        bank.addMoney(1246, 7000000);
+        bank.addMoney(12, 7000000);
+
         bank.addMoney(1246, -1_000_00);
         bank.checkAllAccountsBalance();
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
-    private int balance;
+    private int currentBalance;
     private List<Accounts> accounts = new ArrayList<>();
 
     public void addAccount(Accounts account) {
@@ -28,17 +28,21 @@ public class Bank {
         return true;
     }
 
-    public void addMoney(int toAccountsNumber, int money) {
+    public boolean addMoney(int toAccountsNumber, int money) {
         if (!isPositiveAmount(money)) {
-            return;
+            return false;
         }
         Accounts toAccountNumber = getAccounts(toAccountsNumber);
-        if (toAccountNumber != null) {
-            int currentBalance = toAccountNumber.getAccountBalance();
-            int newBalance = currentBalance + money;
-            toAccountNumber.setAccountBalance(newBalance);
-            System.out.println(toAccountNumber.getAccountName() + " Деньги успешно приняты, " + "ваш баланс " + newBalance + " руб.");
+        if (toAccountNumber == null) {
+            System.out.println("Счет не найден");
+            return false;
         }
+        if (toAccountNumber.depositTransfer(money)) {
+            int newBalance = toAccountNumber.getAccountBalance();
+            System.out.println(toAccountNumber.getAccountName() + " Деньги успешно приняты, " + "ваш баланс " + newBalance + " руб.");
+       return true;
+        }
+        return false;
     }
 
     public void withdrawMoney(int fromAccountsNumber, int money) {
