@@ -50,7 +50,7 @@ public class Accounts {
             System.out.println("Со счета " + this.accountName +  " списано " + amount + " . Ваш баланс составляет - " + this.accountBalance);
             return true;
         } else {
-            System.out.println("Ошибка, недостаточно средств на счете. Ваш балас - ");
+            System.out.println("Ошибка, недостаточно средств на счете. Ваш балас - " + this.accountBalance);
             return false;
         }
     }

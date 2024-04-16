@@ -9,6 +9,10 @@ public class Main {
 
 
         bank.TransferMoney(1245, 1000, 1246);
+        bank.TransferMoney(1243, 1000, 1246);
+        bank.TransferMoney(1247, 10000000, 1246);
+        bank.TransferMoney(1247, -10000000, 1246);
+
 
 
         bank.checkAllAccountsBalance();
